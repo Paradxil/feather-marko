@@ -2,8 +2,13 @@
 feather-marko provides a simple MarkoJS component to use Feather icons.
 
 ## Getting Started
+Installation
 ```
 npm i feather-marko
+```
+Demo
+```
+npm run demo
 ```
 
 ## Usage
@@ -13,7 +18,7 @@ Only one component is provided:
 ```
 feather-icon
 ```
-Drop `feather-icon` tag into your Marko templates wherever you want to display an icon.
+Drop the `feather-icon` tag into your Marko templates wherever you want to display an icon.
 
 ### Attributes
 You can modify the look of the icon with the following attributes:
@@ -31,14 +36,28 @@ strokelinejoin | Set the linejoin type. | round, bevel, miter
 
 ### Example
 ![Edit Icon Orange](./assets/edit-example.png)
-```
+```marko
 feather-icon icon='edit' color='orange' size='48px'
 ```
 
-## Demo
-```
-npm run demo
-```
-Running the demo will automatically open a browser window. The demo shows all icons and lets you search them.
+### Defaults
+You can use CSS variables to change the default icon attributes. Setting an attribute on an icon directly wil override the defaults.
 
-In addition you can modify the settings for an icon and the appropriate Marko tag code will be generated making it easy to copy and paste icons into your Marko templates.
+```css
+.feather-icon-svg {
+        --feather-icon-color: inherit;
+        --feather-icon-stroke: currentColor;
+        --feather-icon-size: 1em;
+        --feather-icon-fill: none;
+        --feather-icon-stroke-width: 2px;
+        --feather-icon-linecap: round;
+        --feather-icon-linejoin: round;
+}
+```
+You can also define in the variables in `:root` if you add `!important`.
+
+## License
+MIT
+
+## Author
+Hunter Stratton

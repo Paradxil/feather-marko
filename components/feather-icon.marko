@@ -8,20 +8,30 @@ class {
 
 style {
     .feather-icon {
+        --feather-icon-color: inherit;
+        --feather-icon-stroke: currentColor;
+        --feather-icon-size: 1em;
+        --feather-icon-fill: none;
+        --feather-icon-stroke-width: 2px;
+        --feather-icon-linecap: round;
+        --feather-icon-linejoin: round;
+
         display: flex;
     }
 }
 
+$ let width = input.width||input.size||'var(--feather-icon-size)';
+$ let height = input.height||input.size||'var(--feather-icon-size)';
+
 $ let attrs = {
-    color: input.color||'inherit',
-    class: input.class||'feather-icon-svg',
-    width: input.width||input.size||"1em",
-    height: input.height||input.size||"1em",
-    fill: input.fill||"none",
-    stroke: input.stroke||'currentColor',
-    'stroke-width': input.strokewidth||"2px",
-    'stroke-linecap': input.strokelinecap||"round",
-    'stroke-linejoin': input.strokelinejoin||"round"
+    color: input.color||'var(--feather-icon-color)',
+    class: 'feather-icon-svg',
+    'style': "width:"+width + "; height:"+height+";", //Set the width and height using a style so that CSS vars work.
+    fill: input.fill||'var(--feather-icon-fill)',
+    stroke: input.stroke||'var(--feather-icon-stroke)',
+    'stroke-width': input.strokewidth||'var(--feather-icon-stroke-width)',
+    'stroke-linecap': input.strokelinecap||'var(--feather-icon-linecap)',
+    'stroke-linejoin': input.strokelinejoin||'var(--feather-icon-linejoin)'
 }
 
 $ let icon = feather.icons[input.icon||"image"]||feather.icons["image"];
