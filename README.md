@@ -8,12 +8,12 @@ npm i feather-marko
 
 ## Usage
 
-### Tag
-Only one tag is provided:
+### Component
+Only one component is provided:
 ```
 feather-icon
 ```
-Drop the tag into your Marko templates wherever you want to display an icon.
+Drop `feather-icon` tag into your Marko templates wherever you want to display an icon.
 
 ### Attributes
 You can modify the look of the icon with the following attributes:
