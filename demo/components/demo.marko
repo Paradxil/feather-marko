@@ -1,0 +1,212 @@
+import feather from 'feather-icons'
+
+class {
+    onCreate() {
+        this.state = {
+            currentIcon: "image",
+            filter: "",
+            size: 48,
+            strokeWidth: 2,
+            color: "currentColor",
+            fill: "none",
+            linecap: "round",
+            linejoin: "round"
+        }
+    }
+    clickIcon(icon) {
+        this.state.currentIcon = icon;
+    }
+    updateFilter(event) {
+        this.state.filter = event.target.value;
+    }
+    updateSize(event) {
+        this.state.size = event.target.value;
+    }
+    updateStrokeWidth(event) {
+        this.state.strokeWidth = event.target.value;
+    }
+    updateColor(event) {
+        this.state.color = event.target.value;
+    }
+    updateFill(event) {
+        this.state.fill = event.target.value;
+    }
+    updateLinecap(event) {
+        this.state.linecap = event.target.value;
+    }
+    updateLinejoin(event) {
+        this.state.linejoin = event.target.value;
+    }
+}
+
+style {
+    * {
+        font-family: sans-serif;
+        box-sizing: border-box;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    body {
+        background-color: #f7f7f7;
+    }
+
+    .title {
+        padding: 45px;
+        text-align: center;
+    }
+
+    .icon-demo {
+        padding: 25px;
+        display: flex;
+    }
+
+    .icon-list {
+        display: flex;
+        flex-wrap: wrap;
+        flex: 3;
+        place-content: center;
+        height: 100%;
+    }
+
+    .icon-filter {
+        display: flex;
+        width: 100%;
+        padding: 15px;
+    }
+
+    .icon-filter-input {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .icon-list > .icon {
+        padding: 15px;
+        margin: 3px;
+        border-radius: 4px;
+        transition: background-color 0.1s;
+        background-color: #fff;
+    }
+
+    .icon-list > .icon:hover {
+        background-color: lightblue;
+    }
+
+    .current-icon {
+        background-color: #436ee6 !important;
+        color: #fff;
+    }
+    
+    .icon-previewer-wrapper {
+        flex: 1;
+        position: relative;
+    }
+
+    .icon-previewer {
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: sticky;
+        top: 0px;
+    }
+
+    .icon-preview {
+        display: flex;
+        place-content: center;
+        align-items: center;
+        height: 100px;
+    }
+
+    .icon-settings {
+        width: 100%;
+    }
+
+    .option {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-top: 15px;
+    }
+
+    input, select {
+        padding: 10px;
+    }
+
+    .label {
+        display: flex;
+    }
+
+    .label label {
+        flex: 1;
+    }
+
+    .icon-code {
+        margin-top: 15px;
+        background-color: #f1f1f1;
+        padding: 10px;
+        border-radius: 2px;
+        font-family: "monospace";
+        color: #444;
+        font-size: 12px;
+    }
+}
+
+div.demo-wrapper
+    div.title
+        h1 -- Feather Marko Demo
+    div.icon-demo
+        div.icon-list
+            -- Select an icon
+            $ let filter = "";
+            div.icon-filter
+                input.icon-filter-input on-input("updateFilter") value=state.filter placeholder="Search"
+            $ let iconsList = Object.keys(feather.icons);
+            for|icon| of=iconsList||[]
+                if(state.filter.length === 0 || icon.search(state.filter) >= 0)
+                    feather-icon.icon class={"current-icon": icon==state.currentIcon} icon=icon on-click("clickIcon", icon)
+        div.icon-previewer-wrapper
+            div.icon-previewer
+                div.icon-preview
+                    feather-icon icon=state.currentIcon size=state.size+"px" strokewidth=state.strokeWidth+"px" color=state.color fill=state.fill strokelinecap=state.linecap strokelinejoin=state.linejoin
+                div.icon-settings
+                    div.option
+                        div.label
+                            label -- Size
+                            -- ${state.size}px
+                        input type="range" min="1" max="100" step="1" value=state.size on-input("updateSize")
+                    div.option
+                        div.label
+                            label -- Stroke Width
+                            -- ${state.strokeWidth}px
+                        input type="range" min="0.5" max="5" step="0.25" value=state.strokeWidth on-input("updateStrokeWidth")
+                    div.option
+                        div.label
+                            label -- Color
+                        input value=state.color on-input("updateColor")
+                    div.option
+                        label -- Fill
+                        input value=state.fill on-input("updateFill")
+                    div.option
+                        label -- Stroke Linecap
+                        select on-change("updateLinecap")
+                            option selected=state.linecap==="round" value="round" -- Round
+                            option selected=state.linecap==="square" value="square" -- Square
+                            option selected=state.linecap==="butt" value="butt" -- Butt
+                    div.option
+                        label -- Stroke Linejoin
+                        select on-change("updateLinejoin")
+                            option selected=state.linejoin==="round" value="round" -- Round
+                            option selected=state.linejoin==="bevel" value="bevel" -- Bevel
+                            option selected=state.linejoin==="miter" value="miter" -- Miter
+                div.icon-code
+                    $ let sampleCode = "feather-icon ";
+                    $ sampleCode += state.currentIcon!=="image"?"icon='" + state.currentIcon + "' ":'';
+                    $ sampleCode += state.size!=="24"?"size='" + state.size + "px' ":'';
+                    $ sampleCode += state.color!=="currentColor"?"color='" + state.color + "' ":'';
+                    $ sampleCode += state.fill!=="none"&&state.fill!==""?"fill='" + state.fill + "' ":'';
+                    $ sampleCode += state.strokeWidth!==2?"strokewidth='" + state.strokeWidth + "px' ":'';
+                    $ sampleCode += state.linecap!=="round"?"strokelinecap='" + state.linecap + "' ":'';
+                    $ sampleCode += state.linejoin!=="round"?"strokelinejoin='" + state.linejoin + "' ":'';
+                    -- ${sampleCode}
+

@@ -1,0 +1,24 @@
+import feather from 'feather-icons'
+
+class {
+    handleClick(event) {
+        this.emit("click", event);
+    }
+}
+
+$ let attrs = {
+    color: input.color||'#222',
+    class: input.class||'feather-icon-svg',
+    width: input.width||input.size||"24px",
+    height: input.height||input.size||"24px",
+    fill: input.fill||"none",
+    stroke: input.stroke||'currentColor',
+    'stroke-width': input.strokewidth||"2px",
+    'stroke-linecap': input.strokelinecap||"round",
+    'stroke-linejoin': input.strokelinejoin||"round"
+}
+
+$ let icon = feather.icons[input.icon||"image"]||feather.icons["image"];
+$ let svg = icon!==null?icon.toSvg(attrs):"ICON ERROR";
+
+div.feather-icon class=input.class id=input.id on-click("handleClick") -- $!{svg}

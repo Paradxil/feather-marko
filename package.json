@@ -4,7 +4,7 @@
   "description": "Integrate Feather icons with MarkoJS.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "demo": "npx marko-serve ./demo/index.marko"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,10 @@
   "bugs": {
     "url": "https://github.com/Paradxil/feather-marko/issues"
   },
-  "homepage": "https://github.com/Paradxil/feather-marko#readme"
+  "homepage": "https://github.com/Paradxil/feather-marko#readme",
+  "dependencies": {
+    "@marko/serve": "^4.2.1",
+    "feather-icons": "^4.28.0",
+    "marko": "^5.10.2"
+  }
 }
