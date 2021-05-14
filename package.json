@@ -1,6 +1,6 @@
 {
   "name": "feather-marko",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Integrate Feather icons with MarkoJS.",
   "scripts": {
     "demo": "npx marko-serve ./demo/index.marko"
