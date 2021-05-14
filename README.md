@@ -54,7 +54,7 @@ You can use CSS variables to change the default icon attributes. Setting an attr
         --feather-icon-linejoin: round;
 }
 ```
-You can also define in the variables in `:root` if you add `!important`.
+You can also define the variables in `:root` if you add `!important`.
 
 ## License
 MIT
