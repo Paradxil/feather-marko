@@ -24,8 +24,10 @@
   },
   "homepage": "https://github.com/Paradxil/feather-marko#readme",
   "dependencies": {
-    "@marko/serve": "^4.2.1",
     "feather-icons": "^4.28.0",
     "marko": "^5.10.2"
+  },
+  "devDependencies": {
+    "@marko/serve": "^4.2.3"
   }
 }
