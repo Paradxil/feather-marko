@@ -1,6 +1,31 @@
 import feather from 'feather-icons'
 
 class {
+    onCreate(input) {
+        this.state = {
+            svg: null
+        }
+    }
+
+    onInput(input) {
+        let width = input.width||input.size||'var(--feather-icon-size)';
+        let height = input.height||input.size||'var(--feather-icon-size)';
+        
+        let attrs = {
+            color: input.color||'var(--feather-icon-color)',
+            class: 'feather-icon-svg',
+            'style': "width:"+width + "; height:"+height+";", //Set the width and height using a style so that CSS vars work.
+            fill: input.fill||'var(--feather-icon-fill)',
+            stroke: input.stroke||'var(--feather-icon-stroke)',
+            'stroke-width': input.strokewidth||'var(--feather-icon-stroke-width)',
+            'stroke-linecap': input.strokelinecap||'var(--feather-icon-linecap)',
+            'stroke-linejoin': input.strokelinejoin||'var(--feather-icon-linejoin)'
+        }
+        
+        let icon = feather.icons[input.icon||"image"]||feather.icons["image"];
+        this.state.svg = icon!==null?icon.toSvg(attrs):"ICON ERROR";
+    }
+
     handleClick(event) {
         this.emit("click", event);
     }
@@ -20,21 +45,4 @@ style {
     }
 }
 
-$ let width = input.width||input.size||'var(--feather-icon-size)';
-$ let height = input.height||input.size||'var(--feather-icon-size)';
-
-$ let attrs = {
-    color: input.color||'var(--feather-icon-color)',
-    class: 'feather-icon-svg',
-    'style': "width:"+width + "; height:"+height+";", //Set the width and height using a style so that CSS vars work.
-    fill: input.fill||'var(--feather-icon-fill)',
-    stroke: input.stroke||'var(--feather-icon-stroke)',
-    'stroke-width': input.strokewidth||'var(--feather-icon-stroke-width)',
-    'stroke-linecap': input.strokelinecap||'var(--feather-icon-linecap)',
-    'stroke-linejoin': input.strokelinejoin||'var(--feather-icon-linejoin)'
-}
-
-$ let icon = feather.icons[input.icon||"image"]||feather.icons["image"];
-$ let svg = icon!==null?icon.toSvg(attrs):"ICON ERROR";
-
-div.feather-icon class=input.class id=input.id on-click("handleClick") -- $!{svg}
+div.feather-icon class=input.class id=input.id on-click("handleClick") -- $!{state.svg}
